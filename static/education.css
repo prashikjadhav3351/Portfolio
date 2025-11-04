@@ -1,0 +1,188 @@
+      /* ===== Experience Section Base ===== */
+      #experience {
+        border-radius: 25px;
+        padding: 80px 40px;
+        width: 85%;
+        margin: 100px auto;
+        overflow: hidden;
+      }
+
+      #experience h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        color: #111;
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      #experience h2::after {
+        content: "";
+        width: 70px;
+        height: 4px;
+        background: linear-gradient(90deg, #007bff, #00c6ff);
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      /* ===== Timeline ===== */
+      .exp-timeline {
+        position: relative;
+        margin-left: 20px;
+      }
+
+      .exp-timeline::before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, #007bff, #00c6ff);
+        border-radius: 2px;
+      }
+
+      /* ===== Timeline Item ===== */
+      .exp-item {
+        position: relative;
+        margin-bottom: 50px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+      }
+
+      .exp-item.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .exp-item::before {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 12px;
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border: 3px solid #007bff;
+        border-radius: 50%;
+        z-index: 2;
+      }
+
+      .exp-content {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 25px 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        margin-left: 60px;
+        transition: transform 0.3s ease;
+      }
+
+      .exp-content:hover {
+        transform: translateY(-5px);
+      }
+
+      .exp-content h3 {
+        font-size: 1.2rem;
+        color: #222;
+      }
+
+      .exp-content h3 span {
+        color: #007bff;
+        font-weight: 500;
+      }
+
+      .exp-content .period {
+        color: #777;
+        font-size: 0.9rem;
+        margin: 6px 0 10px;
+      }
+
+      .exp-content p {
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Tablets (max-width: 992px) */
+      @media (max-width: 992px) {
+        #experience {
+          padding: 60px 25px;
+          width: 90%;
+          margin: 80px auto;
+        }
+
+        #experience h2 {
+          font-size: 1.9rem;
+          margin-bottom: 45px;
+        }
+
+        .exp-timeline::before {
+          left: 15px;
+        }
+
+        .exp-item::before {
+          left: 6px;
+        }
+
+        .exp-content {
+          margin-left: 50px;
+          padding: 22px 25px;
+        }
+
+        .exp-content h3 {
+          font-size: 1.1rem;
+        }
+
+        .exp-content p {
+          font-size: 15px;
+        }
+      }
+
+      /* Mobile Devices (max-width: 600px) */
+      @media (max-width: 600px) {
+        #experience {
+          padding: 50px 15px;
+          width: 95%;
+          margin: 60px auto;
+        }
+
+        #experience h2 {
+          font-size: 1.6rem;
+          margin-bottom: 35px;
+        }
+
+        .exp-timeline {
+          margin-left: 10px;
+        }
+
+        .exp-timeline::before {
+          left: 10px;
+          width: 3px;
+        }
+
+        .exp-item::before {
+          left: 2px;
+          width: 14px;
+          height: 14px;
+        }
+
+        .exp-content {
+          margin-left: 35px;
+          padding: 18px 20px;
+        }
+
+        .exp-content h3 {
+          font-size: 1rem;
+        }
+
+        .exp-content .period {
+          font-size: 0.85rem;
+        }
+
+        .exp-content p {
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      }
