@@ -107,6 +107,28 @@
      box-shadow: 0 8px 20px rgba(0, 120, 255, 0.3);
  }
 
+ .view-more-container {
+     text-align: center;
+     margin-top: 40px;
+ }
+
+ .view-more-btn {
+     display: inline-block;
+     background: #b8daff;
+     color: rgb(22, 22, 22);
+     padding: 12px 30px;
+     border-radius: 30px;
+     text-decoration: none;
+     font-weight: 600;
+     transition: all 0.3s ease;
+ }
+
+ .view-more-btn:hover {
+     background: #0056b3;
+     transform: translateY(-3px);
+     color: white;
+ }
+
  @media (max-width: 600px) {
      .projects-header h2 {
          font-size: 2rem;
@@ -183,4 +205,3 @@
          font-size: 0.85rem;
      }
  }
- 
