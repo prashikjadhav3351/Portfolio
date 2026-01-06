@@ -21,7 +21,11 @@
           top: 20px;
           left: 50%;
           transform: translateX(-50%);
-          background: #fff;
+          /* background: #fff; */
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(0px);
+
           border-radius: 40px;
           box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
           padding: 12px 40px;
@@ -118,6 +122,22 @@
               z-index: 200;
           }
       }
+
+
+      /* ===== BLUR ON SCROLL ===== */
+      .navbar.scrolled {
+          background: rgba(255, 255, 255, 0.65);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+
+      /* Optional: slightly darker text on blur */
+      .navbar.scrolled a {
+          color: #111;
+      }
+
 
 
       /* Profile Section */

@@ -1,207 +1,135 @@
- #projects {
-     background: #fafafa;
-     padding: 100px 40px;
-     width: 100%;
-     text-align: center;
- }
+/* ===============================
+   PROJECTS SECTION
+================================ */
+#projects {
+  padding: 50px 0px 20px;
+  background: #f9fafb;
+}
 
- .projects-section {
-     max-width: 1400px;
-     margin: 0 auto;
- }
+.projects-section {
+  max-width: 1180px;
+  margin: 0 auto;
+}
 
- .projects-header h2 {
-     font-size: 2.6rem;
-     margin-bottom: 10px;
-     color: #111;
- }
+/* ===== HEADER ===== */
+.projects-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
 
- #projects h2::after {
-     content: "";
-     display: block;
-     width: 70px;
-     height: 4px;
-     background: linear-gradient(90deg, #007bff, #00c6ff);
-     border-radius: 3px;
-     margin: 12px auto 30px auto;
-     /* centered underline */
- }
+.projects-header h2 {
+  font-size: 34px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
 
- .projects-header p {
-     color: #555;
-     font-size: 1.05rem;
-     margin-bottom: 60px;
- }
+.projects-header p {
+  font-size: 15px;
+  color: #6b7280;
+}
 
- .projects-grid {
-     display: grid;
-     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-     gap: 35px;
- }
+/* ===== GRID ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
 
- /* ===== Project Card ===== */
- .proj-card {
-     position: relative;
-     border-radius: 20px;
-     overflow: hidden;
-     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-     cursor: pointer;
-     opacity: 0;
-     transform: translateY(60px);
-     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
- }
+/* ===== CARD ===== */
+.proj-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
 
- .proj-card.show-card {
-     opacity: 1;
-     transform: translateY(0);
- }
+.proj-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
 
- .proj-img img {
-     width: 100%;
-     height: auto;
-     display: block;
-     transition: transform 0.5s ease;
- }
+/* ===== IMAGE ===== */
+.proj-img {
+  width: 100%;
+  height: 190px;
+  background: #f3f4f6;
+}
 
- .proj-card:hover .proj-img img {
-     transform: scale(1.1);
- }
+.proj-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
- /* Overlay always visible */
- .proj-overlay {
-     position: absolute;
-     bottom: 0;
-     left: 0;
-     right: 0;
-     background: rgba(0, 0, 0, 0.75);
-     color: #fff;
-     padding: 20px;
-     text-align: left;
- }
+/* ===== CONTENT ===== */
+.proj-overlay {
+  position: static;
+  padding: 22px 22px 26px;
+  background: #ffffff;
+  color: #111827;
+}
 
- .proj-overlay h3 {
-     font-size: 1.3rem;
-     margin-bottom: 8px;
- }
+.proj-overlay h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
 
- .proj-overlay p {
-     font-size: 0.9rem;
-     line-height: 1.4;
- }
+.proj-overlay p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 18px;
+}
 
- .proj-btn {
-     display: inline-block;
-     margin-top: 12px;
-     background: linear-gradient(135deg, #0078ff, #00c6ff);
-     color: #fff;
-     padding: 10px 25px;
-     border-radius: 50px;
-     text-decoration: none;
-     font-weight: 500;
-     font-size: 0.9rem;
-     transition: all 0.3s ease;
- }
+/* ===== BUTTON ===== */
+.proj-btn {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: none;
+  border: 1px solid #2563eb;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
 
- .proj-btn:hover {
-     transform: translateY(-2px) scale(1.05);
-     box-shadow: 0 8px 20px rgba(0, 120, 255, 0.3);
- }
+.proj-btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
 
- .view-more-container {
-     text-align: center;
-     margin-top: 40px;
- }
+/* ===== VIEW MORE ===== */
+.view-more-container {
+  text-align: center;
+  margin-top: 48px;
+}
 
- .view-more-btn {
-     display: inline-block;
-     background: #b8daff;
-     color: rgb(22, 22, 22);
-     padding: 12px 30px;
-     border-radius: 30px;
-     text-decoration: none;
-     font-weight: 600;
-     transition: all 0.3s ease;
- }
+.view-more-btn {
+  padding: 12px 30px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #111827;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
 
- .view-more-btn:hover {
-     background: #0056b3;
-     transform: translateY(-3px);
-     color: white;
- }
+.view-more-btn:hover {
+  background: #1f2937;
+}
 
- @media (max-width: 600px) {
-     .projects-header h2 {
-         font-size: 2rem;
-     }
- }
+/* ===== MOBILE ===== */
+@media (max-width: 640px) {
+  .projects-header h2 {
+    font-size: 28px;
+  }
 
- /* ===== Responsive Styles ===== */
-
- /* Tablets (≤992px) */
- @media (max-width: 992px) {
-     #projects {
-         padding: 80px 30px;
-     }
-
-     .projects-header h2 {
-         font-size: 2.2rem;
-     }
-
-     .projects-header p {
-         font-size: 1rem;
-         margin-bottom: 45px;
-     }
-
-     .projects-grid {
-         gap: 25px;
-     }
-
-     .proj-overlay h3 {
-         font-size: 1.15rem;
-     }
-
-     .proj-overlay p {
-         font-size: 0.88rem;
-     }
- }
-
- /* Mobile Devices (≤600px) */
- @media (max-width: 600px) {
-     #projects {
-         padding: 60px 20px;
-     }
-
-     .projects-header h2 {
-         font-size: 1.8rem;
-     }
-
-     .projects-header p {
-         font-size: 0.95rem;
-         margin-bottom: 40px;
-         padding: 0 10px;
-     }
-
-     .projects-grid {
-         grid-template-columns: 1fr;
-         gap: 22px;
-     }
-
-     .proj-overlay {
-         padding: 15px;
-         text-align: center;
-     }
-
-     .proj-overlay h3 {
-         font-size: 1.1rem;
-     }
-
-     .proj-overlay p {
-         font-size: 0.85rem;
-         line-height: 1.5;
-     }
-
-     .proj-btn {
-         padding: 9px 20px;
-         font-size: 0.85rem;
-     }
- }
+  .proj-img {
+    height: 170px;
+  }
+}

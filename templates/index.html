@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="static/contact.css" />
   </head>
   <body>
-    <!-- <button class="menu-toggle" id="menuBtn">☰</button>  -->
+    <button class="menu-toggle" id="menuBtn">☰</button>
     <!-- Navbar -->
     <div class="navbar" id="navbar">
       <a href="#home" class="active">Home</a>
@@ -25,24 +25,27 @@
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </div>
+
     <script>
-      // Toggle navbar visibility on mobile
-      const menuBtn = document.getElementById("menuBtn");
       const navbar = document.getElementById("navbar");
+      const menuBtn = document.getElementById("menuBtn");
 
-      menuBtn.addEventListener("click", () => {
-        navbar.classList.toggle("show");
+      // Blur navbar on scroll
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 10) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
       });
-    </script>
 
-    <!-- Navbar -->
-    <div class="navbar">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#experience">Education</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </div>
+      // Toggle navbar on mobile
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          navbar.classList.toggle("show");
+        });
+      }
+    </script>
 
     <!-- Profile Section -->
     <section id="home" aria-label="Home">
@@ -124,68 +127,6 @@
 
     <!-- Intro Section ended -->
 
-    <!-- about section started -->
-    <section id="about" aria-label="About me">
-      <div class="about-inner">
-        <h2>About Me</h2>
-        <p
-          id="about-text"
-          class="about-text"
-          data-text="I’m a Full Stack Developer with a passion for building intelligent, scalable, and high-performance web applications. I specialize in backend development using Python, Flask, and FastAPI, while creating clean, responsive, and user-friendly front-end interfaces.
-My work involves integrating AI and LLM-based solutions to make applications smarter and more efficient, developing dynamic dashboards for real-time, data-driven insights, and designing robust databases using PostgreSQL and MySQL.
-I enjoy solving complex problems, optimizing performance, and exploring emerging technologies to deliver innovative and practical solutions. Whether it’s building a complete web app from scratch or improving an existing system, I focus on writing clean, maintainable code and creating digital experiences that are both reliable and impactful."
-        ></p>
-      </div>
-    </section>
-
-    <!-- about section ended -->
-
-    <!-- Edcucation section started -->
-
-    <section id="experience">
-      <h2>Experience & Education</h2>
-      <div class="exp-timeline">
-        <div class="exp-item">
-          <div class="exp-content">
-            <h3>Full Stack Developer <span>NeuralTechSoft</span></h3>
-            <p class="period">2025 – Present</p>
-            <p>
-              Building intelligent, scalable web applications using Python,
-              Flask, and FastAPI. Developing real-time dashboards with WebSocket
-              updates, integrating AI and LLM solutions, and managing data
-              efficiently with PostgreSQL and MySQL.
-            </p>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-content">
-            <h3>Web Developer Internship <span>NeuralTechSoft</span></h3>
-            <p class="period">2024 – 2025</p>
-            <p>
-              Worked on backend development using Flask and FastAPI, optimized
-              database queries, implemented JWT authentication, and enhanced
-              application performance and reliability.
-            </p>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-content">
-            <h3>B.Sc IT <span>Mumbai University</span></h3>
-            <p class="period">2021 – 2024</p>
-            <p>
-              Built small-scale full stack projects using Python, Flask, and
-              modern front-end tools. Focused on clean UI/UX, database
-              integration, and creating practical, real-world applications.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Edcucation section Ended -->
-
     <!-- ===== Projects Section ===== -->
     <section id="projects">
       <div class="projects-section">
@@ -253,6 +194,69 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
 
     <!-- ===== Projects Section ===== ended -->
 
+    <!-- about section started -->
+    <section id="about" aria-label="About me">
+      <div class="about-inner glass">
+        <h2>About Me</h2>
+
+        <p
+          id="about-text"
+          class="about-text"
+          data-text="I’m a Full Stack Developer with a passion for building intelligent, scalable, and high-performance web applications. I specialize in backend development using Python, Flask, and FastAPI, while creating clean, responsive, and user-friendly front-end interfaces.
+My work involves integrating AI and LLM-based solutions to make applications smarter and more efficient, developing dynamic dashboards for real-time, data-driven insights, and designing robust databases using PostgreSQL and MySQL.
+I enjoy solving complex problems, optimizing performance, and exploring emerging technologies to deliver innovative and practical solutions. Whether it’s building a complete web app from scratch or improving an existing system, I focus on writing clean, maintainable code and creating digital experiences that are both reliable and impactful."
+        ></p>
+      </div>
+    </section>
+
+    <!-- about section ended -->
+
+    <!-- Edcucation section started -->
+
+    <section id="experience">
+      <h2>Experience & Education</h2>
+      <div class="exp-timeline">
+        <div class="exp-item">
+          <div class="exp-content">
+            <h3>Full Stack Developer <span>NeuralTechSoft</span></h3>
+            <p class="period">2025 – Present</p>
+            <p>
+              Building intelligent, scalable web applications using Python,
+              Flask, and FastAPI. Developing real-time dashboards with WebSocket
+              updates, integrating AI and LLM solutions, and managing data
+              efficiently with PostgreSQL and MySQL.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-content">
+            <h3>Web Developer Internship <span>NeuralTechSoft</span></h3>
+            <p class="period">2024 – 2025</p>
+            <p>
+              Worked on backend development using Flask and FastAPI, optimized
+              database queries, implemented JWT authentication, and enhanced
+              application performance and reliability.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-content">
+            <h3>B.Sc IT <span>Mumbai University</span></h3>
+            <p class="period">2021 – 2024</p>
+            <p>
+              Built small-scale full stack projects using Python, Flask, and
+              modern front-end tools. Focused on clean UI/UX, database
+              integration, and creating practical, real-world applications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Edcucation section Ended -->
+
     <!-- ===== Contact Section ===== -->
     <section id="contact">
       <div class="contact-container">
@@ -264,28 +268,177 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
           </p>
         </div>
 
-        <form id="contact-form" class="contact-form">
+        <form
+          id="contact-form"
+          class="contact-form"
+          method="POST"
+          action="/submit-contact"
+        >
           <div class="input-group">
-            <input type="text" id="name" name="name" required />
-            <label for="name">Your Name</label>
+            <input type="text" name="name" required />
+            <label>Your Name</label>
           </div>
+
           <div class="input-group">
-            <input type="email" id="email" name="email" required />
-            <label for="email">Your Email</label>
+            <input type="email" name="email" required />
+            <label>Your Email</label>
           </div>
+
           <div class="input-group">
-            <textarea id="message" name="message" rows="5" required></textarea>
-            <label for="message">Your Message</label>
+            <textarea name="message" rows="5" required></textarea>
+            <label>Your Message</label>
           </div>
+
           <button type="submit" class="btn-send">Send Message</button>
         </form>
       </div>
     </section>
+
+    <!-- ===== Contact Section Ended ===== -->
+
+    <div id="success-popup" class="success-popup">
+      <div class="popup-box">
+        <h3>Message Sent</h3>
+        <p>Thank you for contacting me. I will get back to you soon!</p>
+        <button id="popup-close">OK</button>
+      </div>
+    </div>
+
+    <style>
+      /* ================================
+   SUCCESS POPUP (Modern Style)
+================================ */
+      .success-popup {
+        position: fixed;
+        inset: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(4px);
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 9999;
+        animation: fadeIn 0.25s ease-out;
+      }
+
+      .success-popup .popup-box {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        padding: 28px 35px;
+        border-radius: 16px;
+        text-align: center;
+        width: 320px;
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+        animation: popIn 0.35s ease-out;
+      }
+
+      /* Title */
+      .success-popup h3 {
+        margin: 0;
+        font-size: 24px;
+        color: #1d1d1f;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      /* Subtitle */
+      .success-popup p {
+        margin: 12px 0 25px;
+        color: #444;
+        font-size: 15px;
+        line-height: 1.4;
+      }
+
+      /* Button */
+      .success-popup button {
+        padding: 10px 24px;
+        background: linear-gradient(135deg, #4a8afe, #2e6cf6);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.15s ease-in-out;
+        box-shadow: 0px 4px 10px rgba(74, 138, 254, 0.3);
+      }
+
+      .success-popup button:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, #578eff, #336df3);
+        box-shadow: 0px 6px 14px rgba(74, 138, 254, 0.4);
+      }
+
+      /* Fade In Background */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Popup Grow Animation */
+      @keyframes popIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+
     <!-- ===== Contact Section Ended ===== -->
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        /* ===== About Text Animation ===== */
+        /* ============================================================
+     CONTACT FORM SUBMISSION + POPUP MESSAGE
+  ============================================================ */
+        const form = document.getElementById("contact-form");
+        const popup = document.getElementById("success-popup");
+        const popupClose = document.getElementById("popup-close");
+
+        if (form) {
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+              const res = await fetch("/submit-contact", {
+                method: "POST",
+                body: formData,
+              });
+
+              const result = await res.json();
+
+              if (result.status === "success") {
+                popup.style.display = "flex"; // Show popup
+                form.reset();
+              } else {
+                alert("Something went wrong. Please try again.");
+              }
+            } catch (err) {
+              alert("Server error. Please try again later.");
+            }
+          });
+        }
+
+        // Close popup
+        popupClose.addEventListener("click", () => {
+          popup.style.display = "none";
+        });
+
+        popup.addEventListener("click", (e) => {
+          if (e.target === popup) popup.style.display = "none";
+        });
+
+        /* ============================================================
+     ABOUT SECTION TEXT ANIMATION
+  ============================================================ */
         const p = document.getElementById("about-text");
         if (p) {
           const raw = p.getAttribute("data-text") || p.textContent.trim();
@@ -298,6 +451,7 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
             span.style.setProperty("--d", (i * 0.045).toFixed(3) + "s");
             p.appendChild(span);
           });
+
           let started = false;
           function startIfVisible() {
             if (started) return;
@@ -307,11 +461,14 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
               p.classList.add("animate");
             }
           }
+
           setTimeout(startIfVisible, 120);
           window.addEventListener("scroll", startIfVisible, { passive: true });
         }
 
-        /* ===== Experience Section Animation ===== */
+        /* ============================================================
+     EXPERIENCE SECTION ANIMATION
+  ============================================================ */
         const expItems = document.querySelectorAll(".exp-item");
         if (expItems.length > 0) {
           const observer = new IntersectionObserver(
@@ -330,7 +487,9 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
           expItems.forEach((item) => observer.observe(item));
         }
 
-        /* ===== Project Cards Animation ===== */
+        /* ============================================================
+     PROJECT CARDS ANIMATION
+  ============================================================ */
         const projectCards = document.querySelectorAll(".proj-card");
         if (projectCards.length > 0) {
           const projectObserver = new IntersectionObserver(
@@ -345,7 +504,9 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
           projectCards.forEach((card) => projectObserver.observe(card));
         }
 
-        /* ===== Contact Section Animation ===== */
+        /* ============================================================
+     CONTACT SECTION ANIMATION
+  ============================================================ */
         const contactContainer = document.querySelector(".contact-container");
         if (contactContainer) {
           const contactObserver = new IntersectionObserver(
@@ -358,23 +519,16 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
             { threshold: 0.3 }
           );
           contactObserver.observe(contactContainer);
-
-          const form = document.getElementById("contact-form");
-          if (form) {
-            form.addEventListener("submit", (e) => {
-              e.preventDefault();
-              alert("Thank you! Your message has been sent.");
-              form.reset();
-            });
-          }
         }
 
-        /* ===== Navbar Active Highlight ===== */
+        /* ============================================================
+     NAVBAR ACTIVE HIGHLIGHT
+  ============================================================ */
         const navLinks = document.querySelectorAll(".navbar a");
         const sections = document.querySelectorAll("section[id]");
 
         function activateNavLink() {
-          let scrollY = window.scrollY + 200; // Offset
+          let scrollY = window.scrollY + 200;
           sections.forEach((section) => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
@@ -392,7 +546,7 @@ I enjoy solving complex problems, optimizing performance, and exploring emerging
         }
 
         window.addEventListener("scroll", activateNavLink);
-        activateNavLink(); // Run once when page loads
+        activateNavLink();
       });
     </script>
   </body>

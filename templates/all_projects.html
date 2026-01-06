@@ -7,8 +7,6 @@
 
     <style>
       :root {
-        --primary: #007bff;
-        --secondary: #00c6ff;
         --text-dark: #111;
         --text-light: #555;
         --bg: #f3f8ff;
@@ -24,18 +22,22 @@
       /* ===== Section ===== */
       #projects {
         padding: 90px 40px;
-        text-align: center;
       }
 
       .projects-section {
         max-width: 1200px;
-        margin: 0 auto;
+        margin: auto;
+      }
+
+      .projects-header {
+        text-align: center;
       }
 
       .projects-header h2 {
         font-size: 2.6rem;
         font-weight: 700;
         margin-bottom: 10px;
+        color: #000;
       }
 
       .projects-header h2::after {
@@ -43,7 +45,7 @@
         display: block;
         width: 80px;
         height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        background: #000;
         border-radius: 3px;
         margin: 12px auto 30px;
       }
@@ -51,25 +53,45 @@
       .projects-header p {
         color: var(--text-light);
         font-size: 1.1rem;
-        margin-bottom: 60px;
+        margin-bottom: 70px;
       }
 
-      /* ===== Grid Layout ===== */
+      /* ===== Category ===== */
+      .project-category {
+        margin-bottom: 90px;
+        text-align: center;
+      }
+
+      .project-category h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #000;
+      }
+
+      .category-line {
+        width: 60px;
+        height: 4px;
+        background: #000;
+        border-radius: 4px;
+        margin: 0 auto 40px;
+      }
+
+      /* ===== Grid ===== */
       .projects-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 35px;
+        text-align: left;
       }
 
-      /* ===== Project Card (Single Div) ===== */
+      /* ===== Card ===== */
       .project-card {
-        position: relative;
-        overflow: hidden;
-        border-radius: 20px;
         background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s ease;
-        cursor: pointer;
+        transition: 0.4s ease;
       }
 
       .project-card:hover {
@@ -81,54 +103,54 @@
         width: 100%;
         height: 240px;
         object-fit: cover;
-        transition: transform 0.6s ease;
-        border-radius: 20px 20px 0 0;
-      }
-
-      .project-card:hover img {
-        transform: scale(1.05);
       }
 
       .project-content {
-        padding: 25px 25px 30px;
-        text-align: left;
+        padding: 25px;
       }
 
-      .project-content h3 {
+      .project-content h4 {
         font-size: 1.4rem;
-        font-weight: 600;
+        margin-bottom: 6px;
+        color: #000;
+      }
+
+      .project-meta {
+        font-size: 0.8rem;
+        color: #777;
+        font-style: italic;
         margin-bottom: 10px;
-        color: var(--text-dark);
       }
 
       .project-content p {
-        font-size: 0.96rem;
+        font-size: 0.95rem;
         line-height: 1.6;
-        color: #555;
+        color: var(--text-light);
         margin-bottom: 18px;
       }
 
       .proj-btn {
         display: inline-block;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: #fff;
-        padding: 10px 25px;
-        border-radius: 50px;
+        padding: 10px 24px;
+        border-radius: 30px;
         text-decoration: none;
         font-weight: 600;
         font-size: 0.9rem;
-        transition: all 0.3s ease;
+        color: #fff;
+        background: #000;
+        transition: 0.3s ease;
       }
 
       .proj-btn:hover {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 8px 20px rgba(0, 120, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       }
 
       @media (max-width: 768px) {
         #projects {
           padding: 70px 25px;
         }
+
         .projects-header h2 {
           font-size: 2.2rem;
         }
@@ -144,113 +166,144 @@
           <p>Explore my latest creations and technical experiments.</p>
         </div>
 
-        <div class="projects-grid">
-          <!-- Project 1 -->
-          <div class="project-card">
-            <img src="static/project_img/nts.png" alt="NeuralTechSoft" />
-            <div class="project-content">
-              <h3>NeuralTechSoft Website</h3>
-              <p>
-                Built using HTML, CSS, JS, and PHP with a MySQL (phpMyAdmin)
-                backend. Includes Contact Form and email automation.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
+        <!-- ===== HEARDU ===== -->
+        <div class="project-category">
+          <h3>Heardu Platform</h3>
+          <div class="category-line"></div>
+
+          <div class="projects-grid">
+            <div class="project-card">
+              <img src="static/project_img/hu.png" />
+              <div class="project-content">
+                <h4>Heardu Website</h4>
+                <p>
+                  FastAPI-based platform with PostgreSQL powering real-time
+                  community and feedback-driven data.
+                </p>
+                <a href="https://www.heardu.in/" class="proj-btn">View Project</a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="static/housing_pro/complaints-dashboard.png" />
+              <div class="project-content">
+                <h4>Live Report Dashboard</h4>
+                <!-- <div class="project-meta">Category: Heardu Platform</div> -->
+                <p>
+                  Real-time analytics dashboard using FastAPI & WebSocket for
+                  suggestions, complaints, and severity insights.
+                </p>
+                <a href="#" class="proj-btn">View Project</a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="static/housing_pro/complaints-dashboard.png" />
+
+              <div class="project-content">
+                <h4>Heardu Housing Dashboard</h4>
+                <p>
+                  Apartment management system for events, complaints, and instant
+                  admin notifications.
+                </p>
+                <a href="/prohousing" class="proj-btn">View Project</a>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- Project 2 -->
-          <div class="project-card">
-            <img src="static/project_img/hu.png" alt="Heardu Website" />
-            <div class="project-content">
-              <h3>Heardu Website</h3>
-              <p>
-                Modern platform built with FastAPI, HTML, CSS, and JS.
-                Integrated with PostgreSQL for real-time dynamic data.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
+        <!-- ===== NEURALTECHSOFT ===== -->
+        <div class="project-category">
+          <h3>NeuralTechSoft Solutions</h3>
+          <div class="category-line"></div>
+
+          <div class="projects-grid">
+            <div class="project-card">
+              <img src="static/project_img/nts.png" />
+              <div class="project-content">
+                <h4>NeuralTechSoft Website</h4>
+                <p>
+                  Corporate website built with PHP, MySQL, and email automation
+                  for lead management.
+                </p>
+                <a
+                  href="https://www.neuraltechsoft.com/"
+                  class="proj-btn"
+                  >View Project</a
+                >
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="static/logo/pro.jpg" />
+              <div class="project-content">
+                <h4>AI Chatbot</h4>
+                <p>
+                  AI chatbot using Flask and OpenAI API for intelligent,
+                  context-aware conversations.
+                </p>
+                <a href="#" class="proj-btn">View Project</a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="static/project_img/ashraya.png" />
+              <div class="project-content">
+                <h4>Ashraya Foundation Website</h4>
+                <p>
+                  Educational trust website showcasing scholarships and academic
+                  programs.
+                </p>
+                <a
+                  href="https://ashrayafoundation.net"
+                  class="proj-btn"
+                  >View Project</a
+                >
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- Project 3 -->
-          <div class="project-card">
-            <img src="static/logo/pro.jpg" alt="Chatbot" />
-            <div class="project-content">
-              <h3>Neural Techsoft Chatbot</h3>
-              <p>
-                AI chatbot developed using Flask and OpenAI API for natural,
-                context-aware conversations with self-learning abilities.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
+        <!-- ===== TRADING ===== -->
+        <div class="project-category">
+          <h3>Trading Systems</h3>
+          <div class="category-line"></div>
+
+          <div class="projects-grid">
+            <div class="project-card">
+              <img src="static/logo/pro.jpg" />
+              <div class="project-content">
+                <h4>Delta-Neutral Trading System</h4>
+                <p>
+                  Automated trading system balancing derivatives and assets for
+                  low-risk profitability.
+                </p>
+                <a href="#" class="proj-btn">View Project</a>
+              </div>
             </div>
-          </div>
 
-          <!-- Project 4 -->
-          <div class="project-card">
-            <img src="static/logo/pro.jpg" alt="Dashboard" />
-            <div class="project-content">
-              <h3>Live Report Dashboard</h3>
-              <p>
-                Real-time dashboard with FastAPI & WebSocket. Displays dynamic
-                suggestion, complaint, and severity analytics.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
+            <div class="project-card">
+              <img src="static/project_img/alltrades.png" />
+              <div class="project-content">
+                <h4>LiveTrade Visualizer</h4>
+                <p>
+                  Kafka-powered real-time trading visualization with dynamic
+                  charts and insights.
+                </p>
+                <a href="#" class="proj-btn">View Project</a>
+              </div>
             </div>
-          </div>
 
-          <!-- Project 5 -->
-
-          <div class="project-card">
-            <img src="static/logo/pro.jpg" alt="Dashboard" />
-            <div class="project-content">
-              <h3>Delta-Neutral Automated Trading System</h3>
-              <p>
-                Delta-neutral trading system balancing options and assets,
-                auto-adjusting for volatility-based, low-risk profit.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
-            </div>
-          </div>
-
-          <!-- Project 6 -->
-
-          <div class="project-card">
-            <img src="static/logo/pro.jpg" alt="Dashboard" />
-            <div class="project-content">
-              <h3>AutoBook Generator</h3>
-              <p>
-                A book-generation system that converts user data into structured
-                layouts, diagrams, and content, automatically creating a
-                complete, ready-to-download PDF book.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
-            </div>
-          </div>
-
-          <!-- Project 7 -->
-
-          <div class="project-card">
-            <img src="static/logo/pro.jpg" alt="Dashboard" />
-            <div class="project-content">
-              <h3>LiveTrade Visualizer</h3>
-              <p>
-                Real-time trading system using Kafka data to auto-generate
-                dynamic charts and market insights.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
-            </div>
-          </div>
-
-          <!-- Project 8 -->
-
-          <div class="project-card">
-            <img src="static/logo/pro.jpg" alt="Dashboard" />
-            <div class="project-content">
-              <h3>Heardu Housing Dashboard</h3>
-              <p>
-                Apartment dashboard for event updates, resident complaints, and
-                instant admin notifications with quick resolutions.
-              </p>
-              <a href="#" class="proj-btn">View Project</a>
+            <div class="project-card">
+              <img src="static/project_img/book.png" />
+              <div class="project-content">
+                <h4>AutoBook Generator</h4>
+                <p>
+                  Converts structured data into fully designed, downloadable PDF
+                  books automatically.
+                </p>
+                <a href="#" class="proj-btn">View Project</a>
+              </div>
             </div>
           </div>
         </div>

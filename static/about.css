@@ -1,8 +1,8 @@
       /* container */
       #about {
           background: #fafafa;
-          padding: 100px 20px;
-          margin: 80px auto;
+          /* padding: 100px 20px; */
+          /* margin: 10px auto; */
           display: flex;
           justify-content: center;
           align-items: center;
@@ -12,9 +12,9 @@
 
       .about-inner {
           max-width: 880px;
-          margin: 0 auto;
+          /* margin: 0 auto; */
           border-radius: 20px;
-          padding: 48px 40px;
+          /* padding: 48px 40px; */
       }
 
       /* heading */
