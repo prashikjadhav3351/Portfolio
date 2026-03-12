@@ -36,9 +36,46 @@ async def all_projects(request: Request):
 async def prohousing(request:Request):
     return templates.TemplateResponse("prohousing.html",{"request":request})
 
+@app.get("/heardu", response_class=HTMLResponse)
+async def heardu_page(request:Request):
+    return templates.TemplateResponse("heardu.html",{"request":request})
+
+@app.get("/heardu_dashboard", response_class=HTMLResponse)
+async def heardu_dash_page(request:Request):
+    return templates.TemplateResponse("heardu_dashboard.html",{"request":request})
+
+@app.get("/chatbot", response_class=HTMLResponse)
+async def chatbot_page(request:Request):
+    return templates.TemplateResponse("chatbot.html",{"request":request})
+
+@app.get("/trading", response_class=HTMLResponse)
+async def trading_page(request:Request):
+    return templates.TemplateResponse("trading.html",{"request":request})
 
 
+@app.get("/autobook", response_class=HTMLResponse)
+async def autobook_page(request:Request):
+    return templates.TemplateResponse("autobook.html",{"request":request})
 
+@app.get("/edtube", response_class=HTMLResponse)
+async def edtube_page(request:Request):
+    return templates.TemplateResponse("edtube.html",{"request":request})
+
+@app.get("/mpower", response_class=HTMLResponse)
+async def mpower_page(request:Request):
+    return templates.TemplateResponse("mpower.html",{"request":request})
+
+@app.get("/loan_approval", response_class=HTMLResponse)
+async def loan_approval_page(request:Request):
+    return templates.TemplateResponse("loan_approval.html",{"request":request})
+
+@app.get("/trading_dashboard", response_class=HTMLResponse)
+async def trading_dashboard_page(request:Request):
+    return templates.TemplateResponse("trading_dashboard.html",{"request":request})
+
+@app.get("/iron_condor", response_class=HTMLResponse)
+async def iron_condor_page(request:Request):
+    return templates.TemplateResponse("iron_condor.html",{"request":request})
 
 # ======================================================
 #  CONTACT FORM API: Save JSON + Send Email

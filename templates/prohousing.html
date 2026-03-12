@@ -1,104 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Housing Society Management Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Housing Dashboard | Prashik Jadhav</title>
 
-  <!-- GOOGLE FONT -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="/static/theme.css" />
 
   <style>
-    :root {
-      --primary: #1d4ed8;
-      --text-dark: #0f172a;
-      --text-light: #475569;
-      --border: #e5e7eb;
-      --bg: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text-dark);
-    }
-
-    /* ===== CONTAINER ===== */
+    /* Specific styles for prohousing that build on theme.css */
     .project-container {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 90px 20px 100px;
+      padding: 120px 24px 100px;
     }
 
-    /* ===== HEADER ===== */
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
     .project-header {
       text-align: center;
       margin-bottom: 80px;
     }
 
     .project-header h1 {
-      font-size: 44px;
-      font-weight: 700;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
       margin-bottom: 16px;
       letter-spacing: -0.5px;
     }
 
+    .project-header h1 .grad {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     .project-header p {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--text-light);
+      font-size: 1.1rem;
+      color: var(--text-secondary);
       max-width: 850px;
       margin: 0 auto;
       line-height: 1.8;
     }
 
-    /* ===== SECTION ===== */
     .section {
       margin-bottom: 90px;
     }
 
     .section h2 {
-      font-size: 30px;
-      font-weight: 600;
-      margin-bottom: 22px;
-      border-left: 6px solid var(--primary);
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+      border-left: 4px solid var(--accent);
       padding-left: 16px;
     }
 
     .section p {
       font-size: 16px;
-      font-weight: 400;
-      color: var(--text-light);
+      color: var(--text-secondary);
       line-height: 1.8;
       max-width: 940px;
     }
 
-    /* ===== TECH STACK ===== */
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .tech {
-      padding: 10px 20px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: var(--primary);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    /* ===== FEATURES ===== */
+    /* Features Grid */
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -107,33 +85,61 @@
     }
 
     .feature-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-      transition: all 0.25s ease;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
     }
 
     .feature-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), 0 0 20px rgba(124, 58, 237, 0.1);
+      border-color: var(--accent);
     }
 
     .feature-card h3 {
       font-size: 18px;
-      font-weight: 600;
-      margin: 0 0 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
     }
 
     .feature-card p {
       font-size: 15px;
-      font-weight: 400;
-      color: var(--text-light);
+      color: var(--text-secondary);
       line-height: 1.7;
     }
 
-    /* ===== GALLERY ===== */
+    /* Tech Stack Pills */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .tech-pill {
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--badge-color);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .tech-pill:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    }
+
+    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -143,30 +149,36 @@
 
     .gallery img {
       width: 100%;
+      height: 200px;
+      object-fit: cover;
       border-radius: 18px;
       cursor: pointer;
-      border: 1px solid var(--border);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      filter: brightness(0.9);
     }
 
     .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 26px 55px rgba(0, 0, 0, 0.16);
+      transform: scale(1.03);
+      filter: brightness(1.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(124, 58, 237, 0.2);
+      border-color: var(--accent);
     }
 
-    /* ===== LIGHTBOX ===== */
+    /* Lightbox */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.88);
+      background: rgba(6, 6, 14, 0.95);
+      backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
-      z-index: 999;
+      z-index: 9999;
     }
 
     .lightbox.show {
@@ -179,6 +191,8 @@
       max-height: 90%;
       border-radius: 18px;
       animation: zoomIn 0.35s ease;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
 
     .lightbox-close {
@@ -186,39 +200,26 @@
       top: 30px;
       right: 40px;
       font-size: 42px;
-      color: #ffffff;
+      color: #fff;
       cursor: pointer;
       user-select: none;
+      transition: 0.3s;
+    }
+
+    .lightbox-close:hover {
+      color: var(--accent);
+      transform: scale(1.1);
     }
 
     @keyframes zoomIn {
       from {
-        transform: scale(0.85);
+        transform: scale(0.9);
         opacity: 0;
       }
+
       to {
         transform: scale(1);
         opacity: 1;
-      }
-    }
-
-    /* ===== FOOTER ===== */
-    .project-footer {
-      text-align: center;
-      margin-top: 110px;
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text-light);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .project-header h1 {
-        font-size: 34px;
-      }
-
-      .section h2 {
-        font-size: 26px;
       }
     }
   </style>
@@ -226,11 +227,60 @@
 
 <body>
 
+  <!-- ===== Theme Toggle ===== -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+
+  <!-- ===== Back to Top ===== -->
+  <button class="back-to-top" id="backToTop" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      function applyTheme(t) {
+        document.documentElement.setAttribute('data-theme', t);
+        toggle.textContent = t === 'dark' ? '🌙' : '☀️';
+        localStorage.setItem('theme', t);
+      }
+      applyTheme(localStorage.getItem('theme') || 'dark');
+      toggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+      });
+
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (backToTop) {
+          if (window.scrollY > 400) {
+            backToTop.classList.add('show');
+          } else {
+            backToTop.classList.remove('show');
+          }
+        }
+      });
+
+      if (backToTop) {
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    });
+  </script>
+
   <div class="project-container">
+
+    <div class="nav-container">
+      <a href="/all_projects" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+    </div>
 
     <!-- HEADER -->
     <div class="project-header">
-      <h1>Housing Society Management Dashboard</h1>
+      <h1>Housing Society <span class="grad">Dashboard</span></h1>
       <p>
         A full-stack web application built to digitize housing society operations,
         enabling efficient complaint handling, notice management, and issue resolution
@@ -238,7 +288,7 @@
       </p>
     </div>
 
-    <!-- OVERVIEW -->
+    <!-- PROJECT OVERVIEW -->
     <div class="section">
       <h2>Project Overview</h2>
       <p>
@@ -253,12 +303,12 @@
     <div class="section">
       <h2>Technology Stack</h2>
       <div class="tech-stack">
-        <div class="tech">FastAPI</div>
-        <div class="tech">Python</div>
-        <div class="tech">PostgreSQL</div>
-        <div class="tech">HTML5</div>
-        <div class="tech">CSS3</div>
-        <div class="tech">REST APIs</div>
+        <div class="tech-pill">FastAPI</div>
+        <div class="tech-pill">Python</div>
+        <div class="tech-pill">PostgreSQL</div>
+        <div class="tech-pill">JavaScript</div>
+        <div class="tech-pill">WebSockets</div>
+        <div class="tech-pill">HTML / CSS</div>
       </div>
     </div>
 
@@ -268,60 +318,48 @@
       <div class="features">
         <div class="feature-card">
           <h3>Complaint Management</h3>
-          <p>
-            Residents can raise issues while administrators track, analyze,
-            and resolve complaints efficiently.
-          </p>
+          <p>Residents can raise issues while administrators track, analyze, and resolve complaints efficiently.</p>
         </div>
-
         <div class="feature-card">
           <h3>Notice Board System</h3>
-          <p>
-            Create and publish notices with audience, date, time, and
-            location-based visibility.
-          </p>
+          <p>Create and publish notices with audience, date, time, and location-based visibility.</p>
         </div>
-
         <div class="feature-card">
           <h3>Resolution History</h3>
-          <p>
-            Maintain a complete audit trail with resolver details,
-            timestamps, and solutions.
-          </p>
+          <p>Maintain a complete audit trail with resolver details, timestamps, and solutions.</p>
         </div>
-
         <div class="feature-card">
-          <h3>Modern UI & UX</h3>
-          <p>
-            Clean card layouts, modals, responsive design,
-            and intuitive user experience.
-          </p>
+          <h3>Realtime Analytics</h3>
+          <p>Live dashboard showing complaint volume and fast resolution times dynamically via WebSockets.</p>
         </div>
       </div>
     </div>
 
     <!-- GALLERY -->
     <div class="section">
-      <h2>Project Screenshots</h2>
+      <h2>Project Gallery</h2>
       <div class="gallery">
-        <img src="static/housing_pro/complaints.png" alt="">
-        <img src="static/housing_pro/complaint_details.png" alt="">
-        <img src="static/housing_pro/complaints-dashboard.png" alt="">
-        <img src="static/housing_pro/solved.png" alt="">
-        <img src="static/housing_pro/resolve-complaint.png" alt="">
-        <img src="static/housing_pro/notice_board.png" alt="">
-        <img src="static/housing_pro/create_notice.png" alt="">
-        <img src="static/housing_pro/see_notice.png" alt="">
+        <img src="/static/housing_pro/complaints-dashboard.png" alt="Dashboard View">
+        <img src="/static/housing_pro/complaints.png" alt="Complaints List">
+        <img src="/static/housing_pro/complaint_details.png" alt="Complaint Details">
+        <img src="/static/housing_pro/resolve-complaint.png" alt="Resolve Interface">
+        <img src="/static/housing_pro/solved.png" alt="Solved Status">
+        <img src="/static/housing_pro/notice_board.png" alt="Notice Board">
+        <img src="/static/housing_pro/create_notice.png" alt="Create Notice">
+        <img src="/static/housing_pro/see_notice.png" alt="View Notice">
       </div>
     </div>
 
   </div>
 
+    <footer class="site-footer">
+        <p>design developed by © 2025 Prashik Jadhav</p>
+    </footer>
+
   <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox">
     <span class="lightbox-close">&times;</span>
-    <img class="lightbox-img">
-  </div>
+    <img class="lightbox-img" alt="Zoomed Screenshot">
 
   <script>
     const images = document.querySelectorAll(".gallery img");
@@ -336,22 +374,11 @@
       });
     });
 
-    closeBtn.addEventListener("click", () => {
-      lightbox.classList.remove("show");
-    });
-
-    lightbox.addEventListener("click", e => {
-      if (e.target !== lightboxImg) {
-        lightbox.classList.remove("show");
-      }
-    });
-
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") {
-        lightbox.classList.remove("show");
-      }
-    });
+    closeBtn.addEventListener("click", () => lightbox.classList.remove("show"));
+    lightbox.addEventListener("click", e => { if (e.target !== lightboxImg) lightbox.classList.remove("show"); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") lightbox.classList.remove("show"); });
   </script>
 
 </body>
+
 </html>

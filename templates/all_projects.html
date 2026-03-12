@@ -1,311 +1,438 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Projects</title>
 
-    <style>
-      :root {
-        --text-dark: #111;
-        --text-light: #555;
-        --bg: #f3f8ff;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Projects | Prashik Jadhav</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/static/theme.css?v=1.2" />
+  <link rel="stylesheet" href="/static/projects.css?v=1.2" />
+
+  <style>
+    body {
+      padding-top: 80px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin: 40px 0 60px;
+    }
+
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .page-header p {
+      color: var(--text-secondary);
+      margin-top: 12px;
+      font-size: 1.1rem;
+    }
+
+    .project-category {
+      margin-bottom: 80px;
+    }
+
+    .project-category h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .cat-underline {
+      width: 50px;
+      height: 3px;
+      background: var(--accent-gradient);
+      border-radius: 2px;
+      margin: 0 auto 40px;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---- Slim card (no image) ---- */
+    .proj-card--slim {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-card--slim .proj-slim-body {
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .proj-card--slim .slim-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .proj-card--slim h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .proj-card--slim p {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .proj-card--slim .proj-tech-row {
+      margin-bottom: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== Theme Toggle ===== -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+
+  <!-- ===== Back to Top ===== -->
+  <button class="back-to-top" id="backToTop" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    /* ---- Theme ---- */
+    (function () {
+      const saved = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      function applyTheme(t) {
+        document.documentElement.setAttribute('data-theme', t);
+        toggle.textContent = t === 'dark' ? '🌙' : '☀️';
+        localStorage.setItem('theme', t);
+      }
+      applyTheme(localStorage.getItem('theme') || 'dark');
+      toggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+      });
+
+      /* ---- Project Cards Reveal ---- */
+      const cards = document.querySelectorAll('.proj-card');
+      const backToTop = document.getElementById('backToTop');
+
+      if (cards.length > 0) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add('show-card'), i * 100);
+            }
+          });
+        }, { threshold: 0.1 });
+        cards.forEach(c => obs.observe(c));
       }
 
-      body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        background: var(--bg);
-        color: var(--text-dark);
-      }
-
-      /* ===== Section ===== */
-      #projects {
-        padding: 90px 40px;
-      }
-
-      .projects-section {
-        max-width: 1200px;
-        margin: auto;
-      }
-
-      .projects-header {
-        text-align: center;
-      }
-
-      .projects-header h2 {
-        font-size: 2.6rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        color: #000;
-      }
-
-      .projects-header h2::after {
-        content: "";
-        display: block;
-        width: 80px;
-        height: 4px;
-        background: #000;
-        border-radius: 3px;
-        margin: 12px auto 30px;
-      }
-
-      .projects-header p {
-        color: var(--text-light);
-        font-size: 1.1rem;
-        margin-bottom: 70px;
-      }
-
-      /* ===== Category ===== */
-      .project-category {
-        margin-bottom: 90px;
-        text-align: center;
-      }
-
-      .project-category h3 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        color: #000;
-      }
-
-      .category-line {
-        width: 60px;
-        height: 4px;
-        background: #000;
-        border-radius: 4px;
-        margin: 0 auto 40px;
-      }
-
-      /* ===== Grid ===== */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 35px;
-        text-align: left;
-      }
-
-      /* ===== Card ===== */
-      .project-card {
-        background: #fff;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: 0.4s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-      }
-
-      .project-card img {
-        width: 100%;
-        height: 240px;
-        object-fit: cover;
-      }
-
-      .project-content {
-        padding: 25px;
-      }
-
-      .project-content h4 {
-        font-size: 1.4rem;
-        margin-bottom: 6px;
-        color: #000;
-      }
-
-      .project-meta {
-        font-size: 0.8rem;
-        color: #777;
-        font-style: italic;
-        margin-bottom: 10px;
-      }
-
-      .project-content p {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: var(--text-light);
-        margin-bottom: 18px;
-      }
-
-      .proj-btn {
-        display: inline-block;
-        padding: 10px 24px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: #fff;
-        background: #000;
-        transition: 0.3s ease;
-      }
-
-      .proj-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      }
-
-      @media (max-width: 768px) {
-        #projects {
-          padding: 70px 25px;
+      window.addEventListener('scroll', () => {
+        if (backToTop) {
+          if (window.scrollY > 400) {
+            backToTop.classList.add('show');
+          } else {
+            backToTop.classList.remove('show');
+          }
         }
+      });
 
-        .projects-header h2 {
-          font-size: 2.2rem;
-        }
+      if (backToTop) {
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
       }
-    </style>
-  </head>
+    });
+  </script>
 
-  <body>
-    <section id="projects">
-      <div class="projects-section">
-        <div class="projects-header">
-          <h2>My Projects</h2>
-          <p>Explore my latest creations and technical experiments.</p>
-        </div>
+  <div class="nav-container">
+    <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
 
-        <!-- ===== HEARDU ===== -->
-        <div class="project-category">
-          <h3>Heardu Platform</h3>
-          <div class="category-line"></div>
+  <div class="projects-section">
+    <div class="page-header">
+      <span class="section-label">Portfolio</span>
+      <h1>All <span class="grad">Projects</span></h1>
+      <p>A comprehensive list of my work and technical experiments.</p>
+    </div>
 
-          <div class="projects-grid">
-            <div class="project-card">
-              <img src="static/project_img/hu.png" />
-              <div class="project-content">
-                <h4>Heardu Website</h4>
-                <p>
-                  FastAPI-based platform with PostgreSQL powering real-time
-                  community and feedback-driven data.
-                </p>
-                <a href="" class="proj-btn"
-                  >View Project</a
-                >
-              </div>
+    <!-- ===== HEARDU PLATFORM ===== -->
+    <div class="project-category">
+      <h3>Heardu Platform</h3>
+      <div class="cat-underline"></div>
+      <div class="projects-grid">
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/project_img/hu.png" alt="Heardu Website" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">HTML</span>
+              <span class="proj-tech">CSS</span>
+              <span class="proj-tech">JavaScript</span>
+              <span class="proj-tech">SMTP</span>
             </div>
-
-            <div class="project-card">
-              <img src="static/housing_pro/complaints-dashboard.png" />
-              <div class="project-content">
-                <h4>Live Report Dashboard</h4>
-                <!-- <div class="project-meta">Category: Heardu Platform</div> -->
-                <p>
-                  Real-time analytics dashboard using FastAPI & WebSocket for
-                  suggestions, complaints, and severity insights.
-                </p>
-                <a href="#" class="proj-btn">View Project</a>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="static/housing_pro/complaints-dashboard.png" />
-
-              <div class="project-content">
-                <h4>Heardu Housing Dashboard</h4>
-                <p>
-                  Apartment management system for events, complaints, and
-                  instant admin notifications.
-                </p>
-                <a href="/prohousing" class="proj-btn">View Project</a>
-              </div>
-            </div>
+            <h3>Heardu Website</h3>
+            <p>A web platform built using FastAPI where users interact with the system and send communications through
+              SMTP-based email services with a responsive frontend and backend APIs.</p>
+            <a href="/heardu" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- ===== NEURALTECHSOFT ===== -->
-        <div class="project-category">
-          <h3>NeuralTechSoft Solutions</h3>
-          <div class="category-line"></div>
-
-          <div class="projects-grid">
-            <div class="project-card">
-              <img src="static/project_img/nts.png" />
-              <div class="project-content">
-                <h4>NeuralTechSoft Website</h4>
-                <p>
-                  Corporate website built with PHP, MySQL, and email automation
-                  for lead management.
-                </p>
-                <a href="https://www.neuraltechsoft.com/" class="proj-btn"
-                  >View Project</a
-                >
-              </div>
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/housing_pro/complaints-dashboard.png" alt="Live Report Dashboard" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">WebSocket</span>
             </div>
-
-            <div class="project-card">
-              <img src="static/logo/pro.jpg" />
-              <div class="project-content">
-                <h4>AI Chatbot</h4>
-                <p>
-                  AI chatbot using Flask and OpenAI API for intelligent,
-                  context-aware conversations.
-                </p>
-                <a href="#" class="proj-btn">View Project</a>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="static/project_img/ashraya.png" />
-              <div class="project-content">
-                <h4>Ashraya Foundation Website</h4>
-                <p>
-                  Educational trust website showcasing scholarships and academic
-                  programs.
-                </p>
-                <a href="https://ashrayafoundation.net" class="proj-btn"
-                  >View Project</a
-                >
-              </div>
-            </div>
+            <h3>Live Report Dashboard</h3>
+            <p>Real-time analytics dashboard using FastAPI &amp; WebSocket for suggestions, complaints, and severity
+              insights.</p>
+            <a href="/heardu_dashboard" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- ===== TRADING ===== -->
-        <div class="project-category">
-          <h3>Trading Systems</h3>
-          <div class="category-line"></div>
-
-          <div class="projects-grid">
-            <div class="project-card">
-              <img src="static/logo/pro.jpg" />
-              <div class="project-content">
-                <h4>Delta-Neutral Trading System</h4>
-                <p>
-                  Automated trading system balancing derivatives and assets for
-                  low-risk profitability.
-                </p>
-                <a href="#" class="proj-btn">View Project</a>
-              </div>
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/housing_pro/complaints.png" alt="Housing Dashboard" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">Python</span>
+              <span class="proj-tech">PostgreSQL</span>
             </div>
-
-            <div class="project-card">
-              <img src="static/project_img/alltrades.png" />
-              <div class="project-content">
-                <h4>LiveTrade Visualizer</h4>
-                <p>
-                  Kafka-powered real-time trading visualization with dynamic
-                  charts and insights.
-                </p>
-                <a href="#" class="proj-btn">View Project</a>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="static/project_img/book.png" />
-              <div class="project-content">
-                <h4>AutoBook Generator</h4>
-                <p>
-                  Converts structured data into fully designed, downloadable PDF
-                  books automatically.
-                </p>
-                <a href="#" class="proj-btn">View Project</a>
-              </div>
-            </div>
+            <h3>Heardu Housing Dashboard</h3>
+            <p>Apartment management system for events, complaints, and instant admin notifications.</p>
+            <a href="/prohousing" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
+
       </div>
-    </section>
-  </body>
+    </div>
+
+    <!-- ===== EDUCATIONAL AI PLATFORMS ===== -->
+    <div class="project-category">
+      <h3>Educational AI Platforms</h3>
+      <div class="cat-underline"></div>
+      <div class="projects-grid">
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/Edtube_images/report.png" alt="Edtube AI Platform" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">Python</span>
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">LLM / AI Models</span>
+              <span class="proj-tech">PostgreSQL</span>
+            </div>
+            <h3>Edtube — AI Learning Platform</h3>
+            <p>An AI-powered testing and learning ecosystem that generates personalized tests derived from book content
+              using LLMs and Bloom’s Taxonomy for targeted skill improvement.</p>
+            <a href="/edtube" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== NEURALTECHSOFT ===== -->
+    <div class="project-category">
+      <h3>NeuralTechSoft Solutions</h3>
+      <div class="cat-underline"></div>
+      <div class="projects-grid">
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/project_img/nts.png" alt="NTS Website" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">PHP</span>
+              <span class="proj-tech">MySQL</span>
+              <span class="proj-tech">HTML/CSS</span>
+            </div>
+            <h3>NeuralTechSoft Website</h3>
+            <p>Corporate website built with PHP, MySQL, and email automation for lead management.</p>
+            <a href="https://www.neuraltechsoft.com/" target="_blank" class="proj-btn">Visit Site <i
+                class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/project_img/ashraya.png" alt="Ashraya" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">Frontend</span>
+              <span class="proj-tech">Web Design</span>
+            </div>
+            <h3>Ashraya Foundation</h3>
+            <p>Educational trust website showcasing scholarships and academic programs.</p>
+            <a href="https://ashrayafoundation.net" target="_blank" class="proj-btn">Visit Site <i
+                class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+
+        <!-- Mpower — card with image -->
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/Mpower_images/admindash.png" alt="Mpower Assessment System" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">PostgreSQL</span>
+              <span class="proj-tech">WebSockets</span>
+              <span class="proj-tech">JavaScript</span>
+            </div>
+            <h3>Mpower</h3>
+            <p>Psychological &amp; behavioral assessment platform for evaluating financial suitability through three
+              structured tests — Behavioral Interaction, Work Traits &amp; Big Five Personality.</p>
+            <a href="/mpower" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Loan Approval & Provisioning System -->
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/loan/result.png" alt="Loan Approval System" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">Python</span>
+              <span class="proj-tech">ML Integration</span>
+              <span class="proj-tech">Jinja2</span>
+            </div>
+            <h3>Loan Approval & Provisioning System</h3>
+            <p>Automated credit scoring platform that evaluates borrower risk using ML models, providing instant
+              decisions and feature-level insights through a structured digital pipeline.</p>
+            <a href="/loan_approval" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== TRADING & TOOLS ===== -->
+    <div class="project-category">
+      <h3>Trading Systems &amp; Tools</h3>
+      <div class="cat-underline"></div>
+      <div class="projects-grid">
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/Trading_Dashboard/home.png" alt="Trading Dashboard" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">Plotly</span>
+              <span class="proj-tech">Python</span>
+              <span class="proj-tech">Jinja2</span>
+            </div>
+            <h3>Trading Dashboard</h3>
+            <p>Strategy signal visualizer that transforms raw trading metrics into interactive candlestick charts
+              with intelligent BUY/SELL markers and execution glow lines.</p>
+            <a href="/trading_dashboard" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/option_dash/1.png" alt="Delta-Neutral System" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">Kafka</span>
+              <span class="proj-tech">Python</span>
+              <span class="proj-tech">Chart.js</span>
+            </div>
+            <h3>Delta-Neutral Trading System</h3>
+            <p>High-performance, real-time data visualization dashboard designed for options traders, providing live
+              views of market indicators and IV trends.</p>
+            <a href="/trading" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/IC/ic.png" alt="Iron Condor Dashboard" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">FastAPI</span>
+              <span class="proj-tech">WebSockets</span>
+              <span class="proj-tech">Python</span>
+              <span class="proj-tech">JavaScript</span>
+            </div>
+            <h3>Iron Condor Strategy Dashboard</h3>
+            <p>Real-time "Pro Terminal" for monitoring multi-leg options strategies with dynamic risk bars, portfolio
+              delta meters, and sub-second MTM recalculations.</p>
+            <a href="/iron_condor" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="/static/project_img/autobook.png" alt="AutoBook Generator" loading="lazy" />
+          </div>
+          <div class="proj-overlay">
+            <div class="proj-tech-row">
+              <span class="proj-tech">Python</span>
+              <span class="proj-tech">PDF Gen</span>
+            </div>
+            <h3>AutoBook Generator</h3>
+            <p>Converts structured data into fully designed, downloadable PDF books automatically.</p>
+            <a href="/autobook" class="proj-btn">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>design developed by © 2025 Prashik Jadhav</p>
+  </footer>
+
+</body>
+
 </html>

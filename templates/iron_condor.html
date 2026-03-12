@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iron Condor Strategy — Pro Terminal | Prashik Jadhav</title>
+    <meta name="description"
+        content="Iron Condor Trading Strategy Dashboard – A high-performance, real-time monitoring tool designed for professional options traders." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="/static/theme.css" />
+
+    <style>
+        /* ── Layout ── */
+        .project-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 120px 24px 100px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        /* ── Header ── */
+        .project-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .project-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .project-header h1 .grad {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ── Section ── */
+        .section {
+            margin-bottom: 90px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            border-left: 4px solid var(--accent);
+            padding-left: 16px;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 940px;
+        }
+
+        /* ── Tech Stack Pills ── */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .tech-pill {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tech-pill:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ── Feature Cards ── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), 0 0 20px rgba(124, 58, 237, 0.1);
+            border-color: var(--accent);
+        }
+
+        .feature-card .card-icon {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Workflow Steps ── */
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 36px;
+            position: relative;
+        }
+
+        .workflow::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0 20px 0;
+            position: relative;
+        }
+
+        .step-dot {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            z-index: 1;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .step-body {
+            padding-top: 6px;
+        }
+
+        .step-body h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .step-body p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Gallery ── */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 28px;
+            margin-top: 45px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 18px;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(124, 58, 237, 0.2);
+            border-color: var(--accent);
+        }
+
+        /* ── Lightbox ── */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 6, 14, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+        }
+
+        .lightbox.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            animation: zoomIn 0.35s ease;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 42px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== Theme Toggle ===== -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+
+    <!-- ===== Back to Top ===== -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('themeToggle');
+            function applyTheme(t) {
+                document.documentElement.setAttribute('data-theme', t);
+                toggle.textContent = t === 'dark' ? '🌙' : '☀️';
+                localStorage.setItem('theme', t);
+            }
+            applyTheme(localStorage.getItem('theme') || 'dark');
+            toggle.addEventListener('click', () => {
+                const cur = document.documentElement.getAttribute('data-theme');
+                applyTheme(cur === 'dark' ? 'light' : 'dark');
+            });
+
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (backToTop) {
+                    if (window.scrollY > 400) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                }
+            });
+
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+
+    <div class="project-container">
+
+        <!-- ── Nav ── -->
+        <div class="nav-container">
+            <a href="/all_projects" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+        </div>
+
+        <!-- ── Header ── -->
+        <div class="project-header">
+            <h1>Iron Condor — <span class="grad">Strategy Dashboard</span></h1>
+            <p>
+                A high-performance "Pro Terminal" for professional options traders, designed to track multi-leg
+                strategies on the NIFTY50 index with real-time risk visualization and automated Greek monitoring.
+            </p>
+        </div>
+
+        <!-- ── Project Overview ── -->
+        <div class="section">
+            <h2>Project Overview</h2>
+            <p>
+                The Iron Condor Dashboard bridges the gap between raw financial data and actionable insights.
+                It simplifies complex multi-leg strategy management by providing a centralized view of
+                Total Net MTM, Portfolio Delta, and interactive Risk Zones. Built for sub-second precision,
+                it ensures traders can manage directional exposure and break-even points with confidence.
+            </p>
+        </div>
+
+        <!-- ── Technology Stack ── -->
+        <div class="section">
+            <h2>Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-pill">FastAPI</div>
+                <div class="tech-pill">Python (Asyncio)</div>
+                <div class="tech-pill">WebSockets</div>
+                <div class="tech-pill">JavaScript (ES6+)</div>
+                <div class="tech-pill">HTML5 & CSS3</div>
+                <div class="tech-pill">Uvicorn</div>
+                <div class="tech-pill">JSON Storage</div>
+            </div>
+        </div>
+
+        <!-- ── System Workflow ── -->
+        <div class="section">
+            <h2>System Workflow</h2>
+            <div class="workflow">
+
+                <div class="workflow-step">
+                    <div class="step-dot">1</div>
+                    <div class="step-body">
+                        <h4>Data Generation/Ingestion</h4>
+                        <p>The backend pulls live market data or generates high-fidelity simulated snapshots including
+                            Greeks and Spot Price movements.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-dot">2</div>
+                    <div class="step-body">
+                        <h4>WebSocket Stream</h4>
+                        <p>A persistent bidirectional connection handles sub-second data broadcasts, ensuring the UI
+                            stays updated without refreshes.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-dot">3</div>
+                    <div class="step-body">
+                        <h4>Real-time Processing</h4>
+                        <p>The backend recalculates portfolio state while the frontend parses JSON payloads to update
+                            MTM counters and re-render Risk Bars.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-dot">4</div>
+                    <div class="step-body">
+                        <h4>Risk Monitoring & Alerts</h4>
+                        <p>The system continuously checks price proximity to "Short" or "Hedge" legs, triggering visual
+                            Amber/Red alerts if danger zones are entered.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-dot">5</div>
+                    <div class="step-body">
+                        <h4>State Persistence</h4>
+                        <p>Configurations and historical trade snapshots are maintained in structured JSON, ensuring
+                            session continuity and data integrity.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ── Key Features ── -->
+        <div class="section">
+            <h2>Key Features</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="card-icon">📏</div>
+                    <h3>Dynamic Risk Bars</h3>
+                    <p>Visual representation of "Profit Zones" vs "Risk Zones" based on custom strike distances and
+                        hedge legs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">🧭</div>
+                    <h3>Portfolio Delta Meter</h3>
+                    <p>Aggregates directional risk across all active legs for instant delta-neutral management feedback.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">🚨</div>
+                    <h3>Automated Alerts</h3>
+                    <p>Threshold-based notifications and visual cues for "Near Strike" warnings and MTM milestone
+                        achievements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Expiry Breakdown</h3>
+                    <p>Smart categorization of MTM, Credit, and Risk profiles based on specific option contract expiry
+                        dates.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Use Cases ── -->
+        <div class="section">
+            <h2>Primary Use Cases</h2>
+            <p>
+                Professional traders use this terminal for <strong>Live Strategy Tracking</strong> of complex spreads,
+                <strong>Risk Mitigation</strong> through break-even proximity monitoring, and <strong>Portfolio
+                    Balancing</strong>
+                to maintain delta-neutral positions in volatile markets.
+            </p>
+        </div>
+
+        <!-- ── Gallery ── -->
+        <div class="section">
+            <h2>Project Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="/static/IC/ic.png" alt="Iron Condor Dashboard Overview" />
+                    <span
+                        style="display:block; text-align:center; padding-top:10px; font-size:14px; color:var(--text-secondary);">Pro
+                        Terminal — Multi-Leg Strategy Monitoring</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="site-footer">
+        <p>design developed by © 2025 Prashik Jadhav</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-img" alt="Zoomed Screenshot" />
+    </div>
+
+    <script>
+        const images = document.querySelectorAll(".gallery img");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.querySelector(".lightbox-img");
+        const closeBtn = document.querySelector(".lightbox-close");
+
+        images.forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add("show");
+            });
+        });
+
+        closeBtn.addEventListener("click", () => lightbox.classList.remove("show"));
+        lightbox.addEventListener("click", e => {
+            if (e.target !== lightboxImg) lightbox.classList.remove("show");
+        });
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") lightbox.classList.remove("show");
+        });
+    </script>
+
+</body>
+
+</html>

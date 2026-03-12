@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Approval & Provisioning System | Prashik Jadhav</title>
+    <meta name="description"
+        content="Automated Loan Approval & Credit Scoring System developed for fintech environments, evaluating borrower risk through machine learning models." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="/static/theme.css" />
+
+    <style>
+        /* ── Layout ── */
+        .project-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 120px 24px 100px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        /* ── Header ── */
+        .project-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .project-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .project-header h1 .grad {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ── Section ── */
+        .section {
+            margin-bottom: 90px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            border-left: 4px solid var(--accent);
+            padding-left: 16px;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 940px;
+        }
+
+        /* ── Tech Stack Pills ── */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .tech-pill {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tech-pill:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ── Feature Cards ── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), 0 0 20px rgba(124, 58, 237, 0.1);
+            border-color: var(--accent);
+        }
+
+        .feature-card .card-icon {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Workflow Steps ── */
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 36px;
+            position: relative;
+        }
+
+        .workflow::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0 20px 0;
+            position: relative;
+        }
+
+        .step-dot {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            z-index: 1;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .step-body {
+            padding-top: 6px;
+        }
+
+        .step-body h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .step-body p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Gallery ── */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 28px;
+            margin-top: 45px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 18px;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            background: #fff;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(124, 58, 237, 0.2);
+            border-color: var(--accent);
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .gallery-item span {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* ── Lightbox ── */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 6, 14, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+        }
+
+        .lightbox.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 18px;
+            animation: zoomIn 0.35s ease;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            background: #fff;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 42px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== Theme Toggle ===== -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+
+    <!-- ===== Back to Top ===== -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('themeToggle');
+            function applyTheme(t) {
+                document.documentElement.setAttribute('data-theme', t);
+                toggle.textContent = t === 'dark' ? '🌙' : '☀️';
+                localStorage.setItem('theme', t);
+            }
+            applyTheme(localStorage.getItem('theme') || 'dark');
+            toggle.addEventListener('click', () => {
+                const cur = document.documentElement.getAttribute('data-theme');
+                applyTheme(cur === 'dark' ? 'light' : 'dark');
+            });
+
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (backToTop) {
+                    if (window.scrollY > 400) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                }
+            });
+
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+
+    <div class="project-container">
+
+        <!-- ── Nav ── -->
+        <div class="nav-container">
+            <a href="/all_projects" class="back-btn"><i class="fas fa-arrow-left"></i> All Projects</a>
+        </div>
+
+        <!-- ── Header ── -->
+        <div class="project-header">
+            <h1>Loan Approval & <span class="grad">Provisioning System</span></h1>
+            <p>
+                An automated Loan Approval & Credit Scoring System developed for fintech environments.
+                It provides a standardized interface for processing loan applications, evaluating borrower risk
+                through machine learning models, and delivering instant decision outcomes.
+            </p>
+        </div>
+
+        <!-- ── Project Overview ── -->
+        <div class="section">
+            <h2>Project Overview</h2>
+            <p>
+                This project replaces manual data entry with a structured, digital request-response pipeline,
+                ensuring high data integrity and rapid feedback for applicants. The system evaluates financial profiles
+                using automated scoring engines and provides detailed insights into decision factors.
+            </p>
+        </div>
+
+        <!-- ── Technology Stack ── -->
+        <div class="section">
+            <h2>Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-pill">FastAPI</div>
+                <div class="tech-pill">Python</div>
+                <div class="tech-pill">HTML5 & CSS3</div>
+                <div class="tech-pill">Jinja2</div>
+                <div class="tech-pill">REST API</div>
+                <div class="tech-pill">SHAP Integration</div>
+                <div class="tech-pill">Uvicorn</div>
+            </div>
+        </div>
+
+        <!-- ── Use Cases ── -->
+        <div class="section">
+            <h2>Project Use Cases</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="card-icon">🏦</div>
+                    <h3>Retail Banking</h3>
+                    <p>Small personal loan applications processed instantly without manual officer review.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">💻</div>
+                    <h3>Fintech Lending</h3>
+                    <p>Digital-first platforms requiring real-time risk assessment via API integration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">📈</div>
+                    <h3>Credit Counseling</h3>
+                    <p>Tools for advisors to simulate loan outcomes based on client financial profiles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Internal Audit</h3>
+                    <p>Batch testing of credit risk models against historical applicant data.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Project Workflow ── -->
+        <div class="section">
+            <h2>Project Workflow</h2>
+            <div class="workflow">
+
+                <div class="workflow-step">
+                    <div class="step-dot">1</div>
+                    <div class="step-body">
+                        <h4>Inbound Application</h4>
+                        <p>The user fills out a comprehensive form collecting Personal, Employment, Financial, and
+                            Credit history data.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-dot">2</div>
+                    <div class="step-body">
+                        <h4>Data Normalization</h4>
+                        <p>The backend converts form data into a structured JSON payload, handling optional fields and
+                            type conversions for the ML engine.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-dot">3</div>
+                    <div class="step-body">
+                        <h4>Model Inference</h4>
+                        <p>The system executes a POST request to the Prediction Engine, evaluating features like DTI
+                            Ratio, Late Payment History, and Income Stability.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-dot">4</div>
+                    <div class="step-body">
+                        <h4>Decision Visualization</h4>
+                        <p>Results are parsed into Approved or Rejected states. Approved applications display
+                            Consolidated Insights and contributing features via SHAP.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ── Gallery ── -->
+        <div class="section">
+            <h2>Project Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="/static/loan/form.png" alt="Loan Application Form" />
+                    <span>Inbound Application Form</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="/static/loan/result.png" alt="Decision Result" />
+                    <span>Decision Visualization & Insights</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="site-footer">
+        <p>design developed by © 2025 Prashik Jadhav</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-img" alt="Zoomed Screenshot" />
+    </div>
+
+    <script>
+        const images = document.querySelectorAll(".gallery img");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.querySelector(".lightbox-img");
+        const closeBtn = document.querySelector(".lightbox-close");
+
+        images.forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add("show");
+            });
+        });
+
+        closeBtn.addEventListener("click", () => lightbox.classList.remove("show"));
+        lightbox.addEventListener("click", e => {
+            if (e.target !== lightboxImg) lightbox.classList.remove("show");
+        });
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") lightbox.classList.remove("show");
+        });
+    </script>
+
+</body>
+
+</html>
