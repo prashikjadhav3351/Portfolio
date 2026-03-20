@@ -4,6 +4,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import json
 import os
+import threading
+import time
+import urllib.request
 from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
@@ -17,6 +20,36 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+
+# ======================================================
+#  KEEP-ALIVE: Prevent Render free tier from sleeping
+# ======================================================
+RENDER_URL = os.getenv("RENDER_URL", "")  # e.g. https://your-app.onrender.com
+
+def keep_alive():
+    """Background thread that pings the /health endpoint every 30 seconds."""
+    while True:
+        time.sleep(30)
+        if RENDER_URL:
+            try:
+                urllib.request.urlopen(f"{RENDER_URL}/health", timeout=10)
+                print(f"[keep-alive] Pinged {RENDER_URL}/health")
+            except Exception as e:
+                print(f"[keep-alive] Ping failed: {e}")
+
+@app.on_event("startup")
+async def startup_event():
+    if RENDER_URL:
+        thread = threading.Thread(target=keep_alive, daemon=True)
+        thread.start()
+        print(f"[keep-alive] Started — pinging {RENDER_URL} every 30s")
+    else:
+        print("[keep-alive] RENDER_URL not set, keep-alive disabled")
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 
 # Create folder for storing contact data
 if not os.path.exists("contacts"):
